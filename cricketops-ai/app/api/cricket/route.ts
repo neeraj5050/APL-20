@@ -3,6 +3,7 @@
 // Smart caching to stay within free tier (100 calls/day)
 // ============================================================
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
