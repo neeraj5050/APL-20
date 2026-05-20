@@ -7,8 +7,8 @@ export function useAgentStats() {
 
   const fetchStats = useCallback(async () => {
     try {
-      const res = await fetch('/api/agents');
-      if (!res.ok) return;
+      const res = await fetch('/api/agents').catch(() => null);
+      if (!res || !res.ok) return;
       const data = await res.json();
       setAgentStats(data);
     } catch (err) {
@@ -24,14 +24,26 @@ export function useAgentStats() {
 
   const toggleAgent = async (agentId: string, isActive: boolean) => {
     try {
-      await fetch(`/api/agents/${agentId}`, {
+      const res = await fetch(`/api/agents/${agentId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive }),
-      });
+      }).catch(() => null);
+
+      if (!res || !res.ok) {
+        // Fallback: update local Zustand state directly
+        setAgentStats(
+          agentStats.map((s) => (s.agentId === agentId ? { ...s, isActive } : s))
+        );
+        return;
+      }
       fetchStats();
     } catch (err) {
       console.error('Failed to toggle agent:', err);
+      // Fallback: update local Zustand state directly
+      setAgentStats(
+        agentStats.map((s) => (s.agentId === agentId ? { ...s, isActive } : s))
+      );
     }
   };
 

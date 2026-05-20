@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": "cricketops-ai/out",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -13,8 +13,8 @@ export function useKanban() {
       const url = lastFetchRef.current
         ? `/api/tasks?since=${encodeURIComponent(lastFetchRef.current)}`
         : '/api/tasks';
-      const res = await fetch(url);
-      if (!res.ok) return;
+      const res = await fetch(url).catch(() => null);
+      if (!res || !res.ok) return;
       const data: Task[] = await res.json();
       
       if (lastFetchRef.current && data.length > 0) {

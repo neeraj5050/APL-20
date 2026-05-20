@@ -68,7 +68,26 @@ export const useMatchStore = create<MatchStore>((set) => ({
     set((s) => ({ feedItems: [item, ...s.feedItems].slice(0, 100) })),
 
   // Agents
-  agentStats: [],
+  agentStats: [
+    {
+      agentId: 'meme',
+      agentName: 'Meme Agent',
+      tasksToday: 0,
+      totalTasks: 0,
+      avgGenTime: 0,
+      successRate: 100,
+      isActive: true,
+    },
+    {
+      agentId: 'prediction',
+      agentName: 'Prediction Agent',
+      tasksToday: 0,
+      totalTasks: 0,
+      avgGenTime: 0,
+      successRate: 100,
+      isActive: true,
+    }
+  ],
   setAgentStats: (stats) => set({ agentStats: stats }),
 
   // Simulation

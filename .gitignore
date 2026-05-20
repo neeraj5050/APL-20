@@ -1,0 +1,22 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js build output
+/.next/
+/out/
+/build
+
+# firebase cache and logs
+.firebase/
+firebase-debug.log*
+.cricket-cache.json
+
+# local env files
+.env*.local
+
+# OS files
+.DS_Store
+*.pem
+Thumbs.db

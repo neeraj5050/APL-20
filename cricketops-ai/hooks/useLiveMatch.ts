@@ -22,8 +22,25 @@ export function useLiveMatch() {
 
   const fetchMatches = useCallback(async () => {
     try {
-      const res = await fetch('/api/cricket');
-      if (!res.ok) return;
+      const res = await fetch('/api/cricket').catch(() => null);
+      if (!res || !res.ok) {
+        // Fallback to client-side demo match
+        setSource('demo');
+        setCacheInfo({
+          source: 'local_fallback',
+          apiCallsToday: 0,
+          dailyLimit: 100,
+        });
+        setMatchContext({
+          team1: 'MI',
+          team2: 'CSK',
+          score: '178/4',
+          overs: '18.2',
+        });
+        setIsLive(true);
+        setLastFetched(new Date().toLocaleTimeString());
+        return;
+      }
       const data = await res.json();
 
       const fetchedMatches: LiveMatch[] = data.matches || [];

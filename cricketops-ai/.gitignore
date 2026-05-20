@@ -20,6 +20,8 @@
 .DS_Store
 *.pem
 .cricket-cache.json
+.firebase/
+firebase-debug.log*
 
 # debug
 npm-debug.log*
