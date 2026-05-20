@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-card: #1A2235;
+  --bg-card-hover: #1E2A40;
+  --bg-sidebar: #0D1220;
+  --bg-topbar: #0C1019F0;
+  --accent-blue: #3B82F6;
+  --accent-green: #10B981;
+  --accent-yellow: #F59E0B;
+  --accent-red: #EF4444;
+  --accent-purple: #8B5CF6;
+  --text-primary: #F9FAFB;
+  --text-muted: #6B7280;
+  --border: #1F2D40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Glow card animation */
+.glow-card {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--glow-color, #3B82F6),
+                0 0 0 1px var(--glow-color, #3B82F6) inset;
+  }
+  50% {
+    box-shadow: 0 0 24px var(--glow-color, #3B82F6),
+                0 0 48px color-mix(in srgb, var(--glow-color, #3B82F6) 25%, transparent),
+                0 0 0 1px var(--glow-color, #3B82F6) inset;
+  }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #F9FAFB;
+}
+
+@layer base {
+  .bg-card {
+    background-color: var(--bg-card);
+  }
+  .bg-card-hover {
+    background-color: var(--bg-card-hover);
+  }
+  .bg-sidebar {
+    background-color: var(--bg-sidebar);
+  }
+  .bg-topbar {
+    background-color: var(--bg-topbar);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+}
